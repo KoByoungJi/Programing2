@@ -9,7 +9,6 @@ class Login(ft.UserControl):
         self.page = page
 
     def fn_login(self, e):
-        print(self.tab_type.selected_index)
         self.page.clean()
         if (self.tab_type.selected_index == 0):
             self.page.add(SeniorLoby.Loby(self.page))

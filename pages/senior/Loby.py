@@ -61,10 +61,10 @@ class Loby(ft.UserControl):
                                 title=ft.Text("약 복용"),
                                 subtitle=ft.Text("12:30"),
                             ),
-                            ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
+                            # ft.Row(
+                            #     [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
+                            #     alignment=ft.MainAxisAlignment.END,
+                            # ),
                         ]
                     ),
                     width=400,
@@ -85,10 +85,10 @@ class Loby(ft.UserControl):
                                     "14:00"
                                 ),
                             ),
-                            ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
+                            # ft.Row(
+                            #     [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
+                            #     alignment=ft.MainAxisAlignment.END,
+                            # ),
                         ]
                     ),
                     width=400,
@@ -110,65 +110,16 @@ class Loby(ft.UserControl):
                                     "17:00"
                                 ),
                             ),
-                            ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
+                            # ft.Row(
+                            #     [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
+                            #     alignment=ft.MainAxisAlignment.END,
+                            # ),
                         ]
                     ),
                     width=400,
                     padding=10,
                 ),
             ),
-        )
-
-        self.todoList.controls.append(
-            ft.Card(
-                content=ft.Container(
-                    content=ft.Column(
-                        [
-                            ft.ListTile(
-                                leading=ft.Icon(ft.icons.LOCAL_HOSPITAL),
-                                title=ft.Text("병원 방문"),
-                                subtitle=ft.Text(
-                                    "14:00"
-                                ),
-                            ),
-                            ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
-                        ]
-                    ),
-                    width=400,
-                    padding=10,
-                ),
-                color="#0085FF",
-            ),
-        )
-
-        self.todoList.controls.append(
-            ft.Card(
-                content=ft.Container(
-                    content=ft.Column(
-                        [
-                            ft.ListTile(
-                                leading=ft.Icon(ft.icons.QUIZ),
-                                title=ft.Text("퀴즈 풀기"),
-                                subtitle=ft.Text(
-                                    "17:00"
-                                ),
-                            ),
-                            ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
-                        ]
-                    ),
-                    width=400,
-                    padding=10,
-                ),
-            )
         )
 
         self.page.update()
