@@ -97,6 +97,76 @@ class Loby(ft.UserControl):
             ),
         )
 
+        self.todoList.controls.append(
+            ft.Card(
+                content=ft.Container(
+                    content=ft.Column(
+                        [
+                            ft.ListTile(
+                                leading=ft.Icon(ft.icons.QUIZ),
+                                title=ft.Text("퀴즈 풀기"),
+                                subtitle=ft.Text(
+                                    "17:00"
+                                ),
+                            ),
+                            ft.Row(
+                                [ft.TextButton("수정"), ft.TextButton("삭제")],
+                                alignment=ft.MainAxisAlignment.END,
+                            ),
+                        ]
+                    ),
+                    width=400,
+                    padding=10,
+                ),
+            ),
+        )
+        self.todoList.controls.append(
+            ft.Card(
+                content=ft.Container(
+                    content=ft.Column(
+                        [
+                            ft.ListTile(
+                                leading=ft.Icon(ft.icons.QUIZ),
+                                title=ft.Text("퀴즈 풀기"),
+                                subtitle=ft.Text(
+                                    "17:00"
+                                ),
+                            ),
+                            ft.Row(
+                                [ft.TextButton("수정"), ft.TextButton("삭제")],
+                                alignment=ft.MainAxisAlignment.END,
+                            ),
+                        ]
+                    ),
+                    width=400,
+                    padding=10,
+                ),
+            ),
+        )
+        self.todoList.controls.append(
+            ft.Card(
+                content=ft.Container(
+                    content=ft.Column(
+                        [
+                            ft.ListTile(
+                                leading=ft.Icon(ft.icons.QUIZ),
+                                title=ft.Text("퀴즈 풀기"),
+                                subtitle=ft.Text(
+                                    "17:00"
+                                ),
+                            ),
+                            ft.Row(
+                                [ft.TextButton("수정"), ft.TextButton("삭제")],
+                                alignment=ft.MainAxisAlignment.END,
+                            ),
+                        ]
+                    ),
+                    width=400,
+                    padding=10,
+                ),
+            ),
+        )
+
         self.page.update()
 
     def build(self):

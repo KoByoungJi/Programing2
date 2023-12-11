@@ -1,6 +1,5 @@
 import flet as ft
-import pages.senior.Loby as SeniorLoby
-import pages.guardian.Loby as GuardianLoby
+import Loby as SeniorLoby
 
 class Login(ft.UserControl):
     def __init__(self, page):
@@ -10,10 +9,7 @@ class Login(ft.UserControl):
 
     def fn_login(self, e):
         self.page.clean()
-        if (self.tab_type.selected_index == 0):
-            self.page.add(SeniorLoby.Loby(self.page))
-        else:
-            self.page.add(GuardianLoby.Loby(self.page))
+        self.page.add(SeniorLoby.Loby(self.page))
 
     def build(self):
         self.tab_type = ft.Tabs(
