@@ -1,4 +1,5 @@
 import flet as ft
+
 import Loby as GuardianLoby
 import CallApi as Api
 
@@ -17,9 +18,9 @@ class Login(ft.UserControl):
 
         result, data = Api.SeniorLogin(id)
         if result:
-            print(data)
+            data["seniorId"] = id
             self.page.clean()
-            self.page.add(GuardianLoby.Loby(self.page))
+            GuardianLoby.Loby(self.page, data)
         else:
             self.dlg_modal = ft.AlertDialog(
                 modal=True,
