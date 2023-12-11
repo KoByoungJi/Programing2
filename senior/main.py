@@ -2,7 +2,7 @@ import flet as ft
 import Login as Login
 
 def main(page: ft.Page):
-    page.title = "은빛 돌봄(Senior)"
+    page.title = "은빛 돌봄(시니어))"
     page.window_width = 390        # window's width is 390 px
     page.window_height = 844       # window's height is 844 px
     page.window_resizable = False  # window is not resizable5

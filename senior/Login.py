@@ -1,5 +1,6 @@
 import flet as ft
-import Loby as SeniorLoby
+import Loby as GuardianLoby
+import CallApi as Api
 
 class Login(ft.UserControl):
     def __init__(self, page):
@@ -7,11 +8,53 @@ class Login(ft.UserControl):
 
         self.page = page
 
+    def fn_close_dlg(self, e):
+        self.dlg_modal.open = False
+        self.page.update()
+
     def fn_login(self, e):
-        self.page.clean()
-        self.page.add(SeniorLoby.Loby(self.page))
+        id = self.seniorId.value
+
+        result, data = Api.SeniorLogin(id)
+        if result:
+            print(data)
+            self.page.clean()
+            self.page.add(GuardianLoby.Loby(self.page))
+        else:
+            self.dlg_modal = ft.AlertDialog(
+                modal=True,
+                title=ft.Text(
+                    value="로그인 오류",
+                    size=20
+                ),
+                content=ft.Text(
+                    value=data,
+                    text_align="CENTER",
+                    size=15,
+                ),
+                actions=[
+                    ft.TextButton("확인", on_click=self.fn_close_dlg),
+                ],
+                actions_alignment=ft.MainAxisAlignment.END,
+                on_dismiss=lambda e: print("Modal dialog dismissed!"),
+            )
+
+            self.page.dialog = self.dlg_modal
+            self.dlg_modal.open = True
+            self.page.update()
 
     def build(self):
+        self.seniorId = ft.TextField(
+            width=300,
+            height=50,
+            hint_text="숫자 8자리",
+            hint_style=ft.TextStyle(size=12,color="#AAAAAA"),
+            text_style=ft.TextStyle(size=12,color="#2F2F2F"),
+            border_radius=20,
+            border_width=3,
+            border_color="#0085FF",
+        )
+
         self.tab_type = ft.Tabs(
             label_color="#2F2F2F",
             unselected_label_color="#2F2F2F",
@@ -35,17 +78,7 @@ class Login(ft.UserControl):
                                 padding=ft.padding.only(top=30, left=30)
                             ),
                             ft.Container(
-                                # content=ft.TextField(hint_text="What needs to be done?", on_submit=self.add_clicked, expand=True)
-                                content=ft.TextField(
-                                    width=300,
-                                    height=50,
-                                    hint_text="숫자 8자리",
-                                    hint_style=ft.TextStyle(size=12,color="#AAAAAA"),
-                                    text_style=ft.TextStyle(size=12,color="#2F2F2F"),
-                                    border_radius=20,
-                                    border_width=3,
-                                    border_color="#0085FF",
-                                ),
+                                content=self.seniorId,
                                 padding=ft.padding.only(left=30)
                             ),
                             ft.Container(
@@ -109,7 +142,7 @@ class Login(ft.UserControl):
                                         color="#FFFFFF",
                                         bgcolor="#0085FF"
                                     ),
-                                    on_click=self.fn_login,
+                                    # on_click=self.fn_login,
                                 ),
                                 alignment=ft.alignment.center_right,
                                 padding=ft.padding.only(top=20, right=30)

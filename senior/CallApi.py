@@ -22,7 +22,7 @@ def GuardianLogin(id, password):
         return False, "요청 시간 초과"
     except requests.RequestException as e:
         return False, "아이디/비밀번호를 확인해주세요"
-    
+
 def SeniorLogin(id):
     url = "http://141.164.44.219:3000/auth/senior"
     data = {

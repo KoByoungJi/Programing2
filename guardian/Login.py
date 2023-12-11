@@ -87,7 +87,6 @@ class Login(ft.UserControl):
                                 padding=ft.padding.only(top=30, left=30)
                             ),
                             ft.Container(
-                                # content=ft.TextField(hint_text="What needs to be done?", on_submit=self.add_clicked, expand=True)
                                 content=ft.TextField(
                                     width=300,
                                     height=50,
@@ -109,7 +108,7 @@ class Login(ft.UserControl):
                                         color="#FFFFFF",
                                         bgcolor="#0085FF"
                                     ),
-                                    on_click=self.fn_login,
+                                    # on_click=self.fn_login,
                                 ),
                                 alignment=ft.alignment.center_right,
                                 padding=ft.padding.only(top=20, right=30)
