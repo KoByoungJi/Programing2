@@ -53,6 +53,7 @@ class Login(ft.UserControl):
             border_radius=20,
             border_width=3,
             border_color="#0085FF",
+            value="root"
         )
 
         self.guardianPassword = ft.TextField(
@@ -62,7 +63,8 @@ class Login(ft.UserControl):
             border_radius=20,
             border_width=3,
             border_color="#0085FF",
-            password=True
+            password=True,
+            value="pass"
         )
 
         self.tab_type = ft.Tabs(

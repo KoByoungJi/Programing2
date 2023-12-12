@@ -1,6 +1,6 @@
 import flet as ft
 
-import Loby as GuardianLoby
+import Loby
 import CallApi as Api
 
 class Login(ft.UserControl):
@@ -20,7 +20,7 @@ class Login(ft.UserControl):
         if result:
             data["seniorId"] = id
             self.page.clean()
-            GuardianLoby.Loby(self.page, data)
+            Loby.Loby(self.page, data)
         else:
             self.dlg_modal = ft.AlertDialog(
                 modal=True,
@@ -49,6 +49,7 @@ class Login(ft.UserControl):
             width=300,
             height=50,
             hint_text="숫자 8자리",
+            value="850263",
             hint_style=ft.TextStyle(size=12,color="#AAAAAA"),
             text_style=ft.TextStyle(size=12,color="#2F2F2F"),
             border_radius=20,

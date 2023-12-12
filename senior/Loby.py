@@ -1,9 +1,11 @@
 import flet as ft
 import threading
 import time
+import datetime
 
 import Schedule as Schedule
 import Quiz
+import CallApi as Api
 
 class Loby(ft.UserControl):
     def __init__(self, page, userInfo):
@@ -19,13 +21,92 @@ class Loby(ft.UserControl):
 
         self.page.update()
 
-        checkTask = threading.Thread(target=self.fn_checkTask)
-        checkTask.start()
+        self.checkTask = threading.Thread(target=self.fn_checkTask)
+        self.checkTask.start()
 
     def fn_checkTask(self):
         while(True):
-            print(1)
+            try:
+                fromTime = (datetime.datetime.now() - datetime.timedelta(seconds=20)).strftime("%Y%m%d%H%M%S")
+                toTime = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+
+                for idx, schedule in enumerate(self.schedule.scheduleInfo):
+                    if fromTime <= schedule["datetime"] and schedule["datetime"] <= toTime:
+                        self.fn_taskCall(schedule)
+                time.sleep(20)
+            except Exception as error:
+                pass
+
+    def fn_taskCall(self, scheduleInfo):
+        def fn_saveDlg(e):
+            data = {
+                "seniorId": scheduleInfo["seniorId"],
+                "taskId": scheduleInfo["taskId"],
+                "taskContent": scheduleInfo["taskContent"],
+                "datetime": scheduleInfo["datetime"],
+                "check": False
+            }
+            Api.UpdateTask(data)
+
+            self.dlg_modal.open = False
+            self.page.update()
+            self.audio.release()
+            del self.page.overlay[0]
+
+        def fn_closeDlg():
+            self.dlg_modal.open = False
+            self.page.update()
+            self.audio.release()
+            del self.page.overlay[0]
+
+        def fn_taskTimeout():
             time.sleep(10)
+            fn_closeDlg()
+
+        self.audio = ft.Audio(
+            src="/Users/gobyeongji/Desktop/Programing2/iPhone-Alarm-Original.mp3",
+            autoplay=True,
+            volume=1,
+            balance=0,
+            on_loaded=lambda _: print("Loaded"),
+            on_duration_changed=lambda e: print("Duration changed:", e.data),
+            on_position_changed=lambda e: print("Position changed:", e.data),
+            on_state_changed=lambda e: print("State changed:", e.data),
+            on_seek_complete=lambda _: print("Seek complete"),
+        )
+        self.page.overlay.append(self.audio)
+
+        self.dlg_modal = ft.AlertDialog(
+            modal=True,
+            content=ft.Column(
+                controls=[
+                    ft.Container(
+                        content=ft.Icon(name=ft.icons.ACCESS_ALARM, size=200, color="#0085FF"),
+                        alignment=ft.alignment.center
+                    ),
+                    ft.Container(
+                        content=ft.Text(value=scheduleInfo["taskContent"], size=50),
+                        alignment=ft.alignment.center
+                    ),
+                ],
+                height=280,
+            ),
+            actions=[
+                ft.Container(
+                    content=ft.ElevatedButton(text="확인", on_click=fn_saveDlg),
+                    alignment=ft.alignment.center
+                )
+            ],
+            actions_alignment=ft.MainAxisAlignment.END,
+        )
+
+        self.page.dialog = self.dlg_modal
+        self.dlg_modal.open = True
+        self.page.update()
+        self.audio.play()
+
+        taskTimeout = threading.Thread(target=fn_taskTimeout)
+        taskTimeout.start()
 
     def fn_drawInit(self):
         self.page.appbar = ft.AppBar(

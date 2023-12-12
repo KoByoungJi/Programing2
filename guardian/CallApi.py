@@ -41,7 +41,10 @@ def SeniorLogin(id):
         # print(response_data)
 
         if response.status_code == 201:
-            return True, id
+            if response_data["isLogin"]:
+                return True, response_data
+            else:
+                return False, "아이디를 확인해주세요"
         else:
             return False, "서버 연결 오류"
 
@@ -119,4 +122,24 @@ def DeleteTask(taskInfo):
         return False
     except requests.RequestException as e:
         print(requests.RequestException)
+        return False
+
+def GetQuiz(id):
+    url = "http://141.164.44.219:3000/quiz/" + str(id)
+
+    try:
+        response = requests.get(url)
+
+        if response.status_code == 201:
+            response_data = response.json()
+            # response_data = sorted(response_data, key=itemgetter("datetime"))
+            # print(response_data)
+
+            return response_data
+        else:
+            return False
+
+    except requests.Timeout:
+        return False
+    except requests.RequestException as e:
         return False
