@@ -28,8 +28,8 @@ class Schedule(ft.UserControl):
                             [
                                 ft.ListTile(
                                     leading=ft.Icon((lambda check: ft.icons.CIRCLE_OUTLINED if check else ft.icons.CHECK_CIRCLE_OUTLINE)(schedule["check"])),
-                                    title=ft.Text(value=schedule["taskContent"], size=15),
-                                    subtitle=ft.Text(value=datetime.strptime(schedule["datetime"], "%Y%m%d%H%M%S").strftime("%H:%M"), size=10),
+                                    title=ft.Text(value=schedule["taskContent"], size=25),
+                                    subtitle=ft.Text(value=datetime.strptime(schedule["datetime"], "%Y%m%d%H%M%S").strftime("%H:%M"), size=20),
                                     # content_padding=10
                                 ),
                             ]

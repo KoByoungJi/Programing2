@@ -29,7 +29,7 @@ class Quiz(ft.UserControl):
                                 ft.ListTile(
                                     # leading=ft.Icon((lambda check: ft.icons.CIRCLE_OUTLINED if check else ft.icons.CHECK_CIRCLE_OUTLINE)(quiz["check"])),
                                     leading=ft.Icon(name=ft.icons.CHECK_CIRCLE_OUTLINE),
-                                    title=ft.Text(value=quiz["question"], size=15),
+                                    title=ft.Text(value=quiz["question"], size=20),
                                     # subtitle=ft.Text(value=datetime.strptime(schedule["datetime"], "%Y%m%d%H%M%S").strftime("%H:%M"), size=10),
                                     # content_padding=10
                                 ),
