@@ -16,8 +16,6 @@ class Quiz(ft.UserControl):
     def fn_setList(self):
         self.quizList = ft.ListView(expand=1, spacing=10, padding=0, auto_scroll=True)
 
-        # now = datetime.now().strftime("%Y%m%d%H%M%S")
-
         self.quizInfo = Api.GetQuiz(self.seniorId)
 
         for idx, quiz in enumerate(self.quizInfo):
