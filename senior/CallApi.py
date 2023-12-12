@@ -143,3 +143,41 @@ def GetQuiz(id):
         return False
     except requests.RequestException as e:
         return False
+
+def SendDm(dmInfo):
+    url = "http://141.164.44.219:3000/notice/send"
+    # print(dmInfo)
+
+    try:
+        response = requests.post(url, json=dmInfo)
+
+        if response.status_code == 201:
+            print("msg send success")
+
+    except requests.Timeout:
+        print(requests.RequestException)
+        return False
+    except requests.RequestException as e:
+        print(requests.RequestException)
+        return False
+
+def GetDm(id):
+    url = "http://141.164.44.219:3000/notice/receive/" + str(id)
+
+    try:
+        response = requests.get(url)
+        response_data = response.json()
+
+        if response.status_code == 201:
+            if response_data["isSuccess"]:
+                return response_data
+            else:
+                return False
+        else:
+            return False
+
+    except requests.Timeout:
+        return False
+    except requests.RequestException as e:
+        return False
+

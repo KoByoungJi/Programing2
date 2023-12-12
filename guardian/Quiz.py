@@ -62,10 +62,10 @@ class Quiz(ft.UserControl):
         radioGroup = ft.RadioGroup(
             content=ft.Column(
                 [
-                    ft.Radio(value=data["choices"][0], label=data["choices"][0]),
-                    ft.Radio(value=data["choices"][1], label=data["choices"][1]),
-                    ft.Radio(value=data["choices"][2], label=data["choices"][2]),
-                    ft.Radio(value=data["choices"][3], label=data["choices"][3])
+                    ft.Radio(value=data["choices"][0], label=data["choices"][0], disabled=True),
+                    ft.Radio(value=data["choices"][1], label=data["choices"][1], disabled=True),
+                    ft.Radio(value=data["choices"][2], label=data["choices"][2], disabled=True),
+                    ft.Radio(value=data["choices"][3], label=data["choices"][3], disabled=True)
                 ]
             ),
             value=data["answer"]

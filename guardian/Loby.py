@@ -78,8 +78,8 @@ class Loby(ft.UserControl):
 
     def fn_directMsg(self, e):
         def fn_saveDlg(e):
-            # taskInfo = {"seniorId":data["seniorId"], "taskId":data["taskId"], "taskContent":title.value, "datetime":date.value+time.value+"00", "check":True}
-            # Api.UpdateTask(taskInfo)
+            dmInfo = {"seniorId":self.userInfo["seniorId"], "msg":msg.value}
+            Api.SendDm(dmInfo)
 
             self.dlg_modal.open = False
             self.page.update()
